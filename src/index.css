@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Improve font rendering & focus visuals */
+:root {
+  color-scheme: light;
+}
+
+* { outline-offset: 2px; }
