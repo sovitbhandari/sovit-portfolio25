@@ -1,4 +1,4 @@
-# Sovit Bhandari — Portfolio (Vite + React + TS + Tailwind)
+# Sovit Bhandari - Portfolio (Vite + React + TS + Tailwind)
 
 A clean, readable portfolio built for a CS senior with two internships. Runs out-of-the-box—no codegen or external UI libs required.
 
