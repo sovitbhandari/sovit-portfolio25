@@ -236,26 +236,28 @@ export default function App(): JSX.Element {
       <main id="main">
         {/* Hero */}
         <section id="top" className="border-b border-border">
-          <Container className="hero-pad">
+          <Container className="hero-shell">
             <div className="max-w-[900px]">
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <span className="font-mono text-[12px] tracking-[0.18em] text-accent md:text-[13px]">
                   SOFTWARE ENGINEER
                 </span>
                 <span className="h-px w-8 bg-border" aria-hidden />
                 <span className="inline-flex items-center gap-2 font-mono text-[11px] text-ink-muted">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent-soft" aria-hidden />
                   Available
                 </span>
               </div>
 
-              <h1 className="hero-name mt-6 text-ink">{ABOUT.name}</h1>
+              <h1 className="hero-name mt-5 text-ink md:mt-6">{ABOUT.name}</h1>
 
-              <p className="hero-position mt-5 text-ink-secondary">{ABOUT.heroPosition}</p>
+              <p className="hero-position mt-3 text-ink-secondary md:mt-4">
+                {ABOUT.heroPosition}
+              </p>
 
-              <p className="hero-body mt-6 text-ink-secondary">{ABOUT.heroSupport}</p>
+              <p className="hero-body mt-4 text-ink-secondary md:mt-5">{ABOUT.heroSupport}</p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 md:mt-8">
                 <Button href="#projects">View Projects</Button>
                 <Button href="/resume.pdf" variant="outline" target="_blank" rel="noreferrer">
                   Resume
@@ -271,8 +273,10 @@ export default function App(): JSX.Element {
                   <ArrowUpRight className="link-arrow h-3.5 w-3.5" aria-hidden />
                 </a>
               </div>
+            </div>
 
-              <div className="mt-10 flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-6 text-sm text-ink-muted">
+            <div className="max-w-[900px]">
+              <div className="flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-5 text-sm text-ink-muted">
                 <span>{ABOUT.location}</span>
                 <span className="text-border" aria-hidden>
                   /
@@ -288,7 +292,7 @@ export default function App(): JSX.Element {
                 <span className="text-accent">{EDUCATION.year}</span>
               </div>
 
-              <p className="mt-5 font-mono text-xs leading-relaxed text-ink-muted md:text-[13px]">
+              <p className="mt-3 font-mono text-xs leading-relaxed text-ink-muted md:text-[13px]">
                 {ABOUT.heroTech.join("  ·  ")}
               </p>
             </div>

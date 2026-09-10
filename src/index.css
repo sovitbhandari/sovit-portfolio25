@@ -66,29 +66,42 @@ body {
 }
 
 .hero-name {
-  font-size: clamp(3rem, 6vw, 6rem);
+  font-size: clamp(3rem, 6vw, 5.5rem);
   line-height: 1.02;
   letter-spacing: -0.04em;
   font-weight: 600;
 }
 
 .hero-position {
-  font-size: clamp(2rem, 4vw, 4.25rem);
-  line-height: 1.12;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.18;
+  letter-spacing: -0.025em;
   font-weight: 500;
-  max-width: 54rem;
+  max-width: 46rem;
 }
 
 .hero-body {
-  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  font-size: clamp(1rem, 1.15vw, 1.125rem);
   line-height: 1.65;
-  max-width: 40rem;
+  max-width: 38rem;
 }
 
-.hero-pad {
-  padding-top: clamp(4.5rem, 10vw, 8.5rem);
-  padding-bottom: clamp(4rem, 8vw, 7rem);
+.hero-shell {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100svh - 4rem);
+  padding-top: clamp(2.75rem, 6vh, 5rem);
+  padding-bottom: clamp(1.75rem, 4vh, 2.75rem);
+}
+
+@media (max-width: 768px) {
+  .hero-shell {
+    min-height: auto;
+    padding-top: 2.25rem;
+    padding-bottom: 2.5rem;
+    gap: 2rem;
+  }
 }
 
 .section-pad {
