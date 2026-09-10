@@ -1,37 +1,58 @@
 import React from "react";
 
-type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  asChild?: boolean;
-  variant?: "solid" | "outline";
-  size?: "sm" | "md";
+type Variant = "solid" | "outline" | "ghost";
+type Size = "sm" | "md";
+
+type CommonProps = {
+  variant?: Variant;
+  size?: Size;
+  className?: string;
   children: React.ReactNode;
 };
 
-export const Button: React.FC<Props> = ({
-  asChild,
+type ButtonAsButton = CommonProps &
+  React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined };
+
+type ButtonAsLink = CommonProps &
+  React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
+
+export type ButtonProps = ButtonAsButton | ButtonAsLink;
+
+function classes(variant: Variant, size: Size, className: string) {
+  const base =
+    "inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-50";
+  const sizes =
+    size === "sm" ? "h-9 min-h-[36px] px-3 text-sm" : "h-11 min-h-[44px] px-5 text-sm";
+  const styles =
+    variant === "outline"
+      ? "border border-border bg-transparent text-ink hover:border-border-hover hover:bg-surface"
+      : variant === "ghost"
+        ? "text-ink-secondary hover:text-ink hover:bg-surface"
+        : "bg-accent text-bg hover:brightness-110";
+  return `${base} ${sizes} ${styles} ${className}`;
+}
+
+export const Button: React.FC<ButtonProps> = ({
   variant = "solid",
   size = "md",
   className = "",
   children,
   ...rest
 }) => {
-  const base = "inline-flex items-center justify-center rounded-md transition";
-  const sizes = size === "sm" ? "h-9 px-3 text-sm" : "h-10 px-4";
-  const styles =
-    variant === "outline"
-      ? "border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
-      : "bg-slate-900 text-white hover:bg-slate-800";
+  const cls = classes(variant, size, className);
 
-  if (asChild) {
-    // for anchor-as-button
+  if ("href" in rest && rest.href) {
+    const { href, ...anchorRest } = rest as ButtonAsLink;
     return (
-      <a className={`${base} ${sizes} ${styles} ${className}`} {...(rest as any)}>
+      <a href={href} className={cls} {...anchorRest}>
         {children}
       </a>
     );
   }
+
+  const buttonRest = rest as ButtonAsButton;
   return (
-    <button className={`${base} ${sizes} ${styles} ${className}`} {...rest}>
+    <button className={cls} {...buttonRest}>
       {children}
     </button>
   );

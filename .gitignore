@@ -25,3 +25,6 @@ yarn-error.log*
 
 # Tailwind / PostCSS cache
 .pnp.*
+
+# Local resume source files (not for deploy)
+folder_to_read/

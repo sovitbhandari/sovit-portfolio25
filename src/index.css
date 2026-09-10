@@ -2,9 +2,156 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Improve font rendering & focus visuals */
 :root {
-  color-scheme: light;
+  color-scheme: dark;
+  --bg: #0b0d10;
+  --surface: #12161b;
+  --surface-2: #171c22;
+  --border: #2a313a;
+  --border-hover: #3b4450;
+  --text: #f3f1ec;
+  --text-secondary: #a7adb7;
+  --muted: #737a84;
+  --accent: #d89b5b;
+  --accent-2: #8fbfa8;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-* { outline-offset: 2px; }
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.hero-name {
+  font-size: clamp(3rem, 6vw, 6rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+}
+
+.hero-position {
+  font-size: clamp(2rem, 4vw, 4.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  max-width: 54rem;
+}
+
+.hero-body {
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.65;
+  max-width: 40rem;
+}
+
+.hero-pad {
+  padding-top: clamp(4.5rem, 10vw, 8.5rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.section-pad {
+  padding-block: clamp(3rem, 6vw, 5.5rem);
+}
+
+.shot-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.28);
+}
+
+.shot-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  transition: transform 280ms ease;
+}
+
+.group:hover .shot-frame img {
+  transform: scale(1.02);
+}
+
+.project-card {
+  transition: border-color 180ms ease, transform 220ms ease;
+}
+
+.project-card:hover {
+  border-color: var(--border-hover);
+}
+
+.link-arrow {
+  transition: transform 180ms ease;
+}
+
+.group:hover .link-arrow {
+  transform: translate(2px, -2px);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shot-frame img,
+  .project-card,
+  .link-arrow {
+    transition: none;
+  }
+
+  .group:hover .shot-frame img {
+    transform: none;
+  }
+}
